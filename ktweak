@@ -117,6 +117,15 @@ write /proc/sys/net/ipv4/tcp_fastopen 3
 # Disable SYN cookies
 write /proc/sys/net/ipv4/tcp_syncookies 0
 
+#Just a test 
+swapoff /dev/block/zram0 > /dev/null 2>&1
+echo 1 > /sys/block/zram0/reset
+echo 0 > /sys/block/zram0/comp_algorithm
+echo lz4 > /sys/block/zram0/comp_algorithm
+echo 0 > /sys/block/zram0/disksize
+echo 2521225472 > /sys/block/zram0/disksize
+echo 4 > /sys/block/zram0/max_comp_streams
+
 if [[ -f "/sys/kernel/debug/sched_features" ]]
 then
 	# Consider scheduling tasks that are eager to run
